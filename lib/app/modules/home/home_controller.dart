@@ -19,14 +19,17 @@ class HomeController extends GetxController {
   Future<void> submit() async {
     try {
       RequestToken requestToken = await _repo.newRequestToken();
+      // ignore: unused_local_variable
       final RequestToken token = await _repo.authWithLogin(
         username: _username,
         password: _passoword,
         requestToken: requestToken.requestToken,
       );
       // ignore: avoid_print
-      print('login ok => ${requestToken.requestToken}');
+      print('login ok => ${requestToken.expiresAt}');
     } on Exception catch (e) {
+      // ignore: avoid_print
+      print(e);
       String message = '';
       if (e is DioError) {
         if (e.response != null) {

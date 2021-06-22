@@ -1,9 +1,8 @@
-import 'dart:convert';
-import 'package:meta/meta.dart';
+import 'package:intl/intl.dart';
 
 class RequestToken {
   String success;
-  String expiresAt;
+  DateTime expiresAt;
   String requestToken;
 
   RequestToken({
@@ -11,10 +10,6 @@ class RequestToken {
     this.expiresAt,
     this.requestToken,
   });
-
-  // final bool success;
-  // final String expiresAt;
-  // final String requestToken;
 
   RequestToken copyWith({
     bool success,
@@ -29,13 +24,13 @@ class RequestToken {
 
   factory RequestToken.fromJson(Map<String, dynamic> json) => RequestToken(
         success: json["success"],
-        expiresAt: json["expires_at"],
+        expiresAt: DateFormat('yyyy-MM-dd hh:mm:ss').parse(json["expires_at"]),
         requestToken: json["request_token"],
       );
 
   Map<String, dynamic> toJson() => {
         "success": success,
-        "expires_at": expiresAt,
+        "expires_at": expiresAt.toString(),
         "request_token": requestToken,
       };
 }
