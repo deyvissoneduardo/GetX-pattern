@@ -6,8 +6,7 @@ import 'package:app_dp/app/data/repository/authentication_repo.dart';
 import 'package:app_dp/app/routes/app_routes.dart';
 
 class SplashController extends GetxController {
-  final AuthenticationRepo _repo;
-  SplashController(this._repo);
+  final AuthenticationRepo _repo = Get.find<AuthenticationRepo>();
 
   @override
   void onReady() {

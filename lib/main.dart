@@ -1,10 +1,12 @@
 import 'package:app_dp/app/modules/splash/splash_bindings.dart';
 import 'package:app_dp/app/modules/splash/splash_page.dart';
 import 'package:app_dp/app/routes/app_pages.dart';
+import 'package:app_dp/app/utils/dependecy_injection.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
 void main() {
+  DependecyInjection.init();
   runApp(MyApp());
 }
 
