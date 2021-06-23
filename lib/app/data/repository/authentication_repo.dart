@@ -1,5 +1,5 @@
 import 'package:app_dp/app/data/model/request_token.dart';
-import 'package:app_dp/app/data/providers/authentication_api.dart';
+import 'package:app_dp/app/data/providers/remote/authentication_api.dart';
 import 'package:meta/meta.dart' show required;
 import 'package:get/get.dart';
 
