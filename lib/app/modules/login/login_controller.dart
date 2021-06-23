@@ -28,7 +28,7 @@ class LoginController extends GetxController {
         requestToken: requestToken.requestToken,
       );
       await _localAuthRepo.setSession(token);
-      Get.toNamed(AppRoutes.HOME);
+      Get.offAndToNamed(AppRoutes.HOME);
     } on Exception catch (e) {
       // ignore: avoid_print
       print(e);
