@@ -1,52 +1,12 @@
-import 'package:app_dp/app/data/model/request_token.dart';
-import 'package:app_dp/app/data/repository/authentication_repo.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
+import 'package:app_dp/app/data/repository/local/local_auth_repo.dart';
+import 'package:app_dp/app/routes/app_routes.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final _repo = Get.find<AuthenticationRepo>();
-  String _username = '', _passoword = '';
+  final LocalAuthRepo _localAuthRepo = Get.find<LocalAuthRepo>();
 
-  void onUserNameChanged(String text) {
-    _username = text;
-  }
-
-  void onPasswordChanged(String text) {
-    _passoword = text;
-  }
-
-  Future<void> submit() async {
-    try {
-      RequestToken requestToken = await _repo.newRequestToken();
-      final RequestToken token = await _repo.authWithLogin(
-        username: _username,
-        password: _passoword,
-        requestToken: requestToken.requestToken,
-      );
-      // ignore: avoid_print
-      print('login ok => ${requestToken.expiresAt}, $token');
-    } on Exception catch (e) {
-      // ignore: avoid_print
-      print(e);
-      String message = '';
-      if (e is DioError) {
-        if (e.response != null) {
-          message = e.response.statusMessage;
-        } else {
-          message = e.message;
-        }
-      }
-      Get.dialog(AlertDialog(
-        title: const Text('error'),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Get.back(),
-            child: const Text('OK'),
-          ),
-        ],
-      ));
-    }
+  Future<void> logOut() async {
+    await _localAuthRepo.clearSession();
+    Get.offNamedUntil(AppRoutes.LOGIN, (_) => false);
   }
 }

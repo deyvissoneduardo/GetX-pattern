@@ -21,6 +21,7 @@ class LocalAuth {
       }
       return Get.dialog(AlertDialog(
         title: const Text('Token not valid'),
+        content: const Text('Necessario logar novamente, token'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
@@ -29,15 +30,11 @@ class LocalAuth {
         ],
       ));
     }
-    return Get.dialog(AlertDialog(
-      title: const Text('Not Session'),
-      actions: [
-        TextButton(
-          onPressed: () => Get.back(),
-          child: const Text('OK'),
-        )
-      ],
-    ));
+    return null;
+  }
+
+  Future<void> clearSession() async {
+    await _secureStorage.delete(key: KEY);
   }
 
   // guarda sessao local
