@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  dio: ^4.0.0
+  dio: ^5.0.3
   get: null
   flutter_secure_storage: ^4.2.0
   intl: ^0.17.0
